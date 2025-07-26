@@ -1,8 +1,25 @@
-const converter = toUnit => factor => offset => input => {
-    const adjustedInput = input + (offset || 0);
-    const convertedValue = adjustedInput * factor;
-    return `${convertedValue.toFixed(2)} ${toUnit}`;
-};
-// Create specialized converters
-const milesToKm = converter('km')(1.60936)(0);
-console.log(milesToKm(10)); // "16.09 km"
+// const user = {
+//     name: 'Martin',
+//     age: 200,
+//     readUser: function () {
+//         console.log(this)
+//     }
+// }
+/*
+{
+  age: 200,
+  name: "Martin",
+  readUser: function() {
+    console.log(this)
+  }
+}
+*/
+// user.readUser();
+const user = {
+    name: 'Martin',
+    age: 200,
+    readUser: () => {
+        console.log(this)
+    }
+}
+user.readUser(); // this was pointing to the window object
