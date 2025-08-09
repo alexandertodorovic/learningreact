@@ -1,3 +1,5 @@
+import './CoreConcepts.css';
+
 export default function CoreConcepts({ title, title2 }) {
   return (
     <div className="h2">

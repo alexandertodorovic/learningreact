@@ -1,4 +1,7 @@
-import CoreConcepts from "./CoreConcepts";
+import { useState } from 'react'
+
+import CoreConcepts from "./CoreConcepts.jsx";
+import TabButton from './TabButton.jsx'
 
 const reactDescriptions = [
   "React - Fundamental library for building user interfaces",
@@ -22,13 +25,23 @@ function getRandomnextJSDescription() {
   return nextJSDescriptions[randomIndex];
 }
 
-// const titles = [getRandomDescription(), getRandomnextJSDescription()];
-const titles = {
-  title: getRandomDescription(),
-  title2: getRandomnextJSDescription()
-};
 
 export default function Header({ count, setCount }) {
+  // const titles = [getRandomDescription(), getRandomnextJSDescription()];
+  const titles = {
+    title: getRandomDescription(),
+    title2: getRandomnextJSDescription()
+  };
+
+  const [selectedTopic, setSelectedTopic] = useState(() => {
+    // This effect runs once on mount
+    console.log("Component mounted");
+  }, []);
+
+  function handleOnClick(selectedButton) {
+    setSelectedTopic(selectedButton);
+  }
+
   return (
     <header>
       <h1>Vite + React</h1>
@@ -41,7 +54,27 @@ export default function Header({ count, setCount }) {
         </p>
         {/* <CoreConcepts className="h2" title={titles[0]} title2={titles[1]} /> */}
         {/* <CoreConcepts className="h2" title={titles.title} title2={titles.title2} /> */}
-        <CoreConcepts {...titles} />
+        <section id="core-concepts">
+          <CoreConcepts {...titles} />
+        </section>
+        <section id="examples">
+          <h2>Examples</h2>
+          <menu>
+            <TabButton isActive={true} onClick={() => handleOnClick("Example 1 JSX")}>
+              Example 1 JSX
+            </TabButton>
+            <TabButton isActive={false} onClick={() => handleOnClick("Example 2 Props")}>
+              Example 2 Props
+            </TabButton>
+            <TabButton isActive={false} onClick={() => handleOnClick("Example 3 State")}>
+              Example 3 State
+            </TabButton>
+            <TabButton isActive={false} onClick={() => handleOnClick("Example 4 Effects")}>
+              Example 4 Effects
+            </TabButton>
+          </menu>
+          {selectedTopic}
+        </section>
       </div>
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more.{' '}
