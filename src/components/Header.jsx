@@ -27,6 +27,16 @@ function getRandomnextJSDescription() {
 
 
 export default function Header({ count, setCount }) {
+
+// ...existing code...
+const snippets = {
+  components: `const Element = () => <div>Hello, World!</div>;`,
+  jsx:        `const JSX = () => <div>This is JSX syntax</div>;`,
+  props:      `const Greeting = ({ name }) => <div>Hello, {name}!</div>;`,
+  state:      `const Sum = ({ a, b }) => <div>{a + b}</div>;`
+};
+// ...existing
+
   // const titles = [getRandomDescription(), getRandomnextJSDescription()];
   const titles = {
     title: getRandomDescription(),
@@ -60,20 +70,27 @@ export default function Header({ count, setCount }) {
         <section id="examples">
           <h2>Examples</h2>
           <menu>
-            <TabButton isActive={true} onClick={() => handleOnClick("Example 1 JSX")}>
+            <TabButton isActive={true} onClick={() => handleOnClick("components")}>
               Example 1 JSX
             </TabButton>
-            <TabButton isActive={false} onClick={() => handleOnClick("Example 2 Props")}>
+            <TabButton isActive={false} onClick={() => handleOnClick("jsx")}>
               Example 2 Props
             </TabButton>
-            <TabButton isActive={false} onClick={() => handleOnClick("Example 3 State")}>
+            <TabButton isActive={false} onClick={() => handleOnClick("props")}>
               Example 3 State
             </TabButton>
-            <TabButton isActive={false} onClick={() => handleOnClick("Example 4 Effects")}>
+            <TabButton isActive={false} onClick={() => handleOnClick("state")}>
               Example 4 Effects
             </TabButton>
           </menu>
-          {selectedTopic}
+          <div>
+            <h3>{selectedTopic}</h3>
+            <pre>
+              <code>
+                {snippets[selectedTopic]}
+              </code>
+            </pre>
+          </div>
         </section>
       </div>
       <p className="read-the-docs">
