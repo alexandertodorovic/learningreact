@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "name": "reactwithtypescript",
+=======
+  "name": "learningreact",
+>>>>>>> cb565bd (Initialize Vite React project)
   "private": true,
   "version": "0.0.0",
   "type": "module",
